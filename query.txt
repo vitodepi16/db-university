@@ -46,5 +46,5 @@ SELECT COUNT(`id`) FROM `departments` ;
 
 //SOLUTION
 
-SELECT * FROM `teachers` WHERE `phone` IS null;
+SELECT COUNT(*) FROM `teachers` WHERE `phone` IS null;
 
