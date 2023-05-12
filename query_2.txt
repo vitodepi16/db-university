@@ -1,3 +1,5 @@
+QUERY USING JOIN
+
 1. Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
 
 //SOLUTION
@@ -68,3 +70,41 @@ superare ciascuno dei suoi esami
 
 //SOLUTION
 
+QUERY CON GROUP BY
+
+
+1. Contare quanti iscritti ci sono stati ogni anno
+
+//SOLUTION
+
+SELECT YEAR(`students`.`enrolment_date`) AS 'year',  COUNT(YEAR(`students`.`enrolment_date`)) AS 'total_enrollments'
+FROM `students`
+GROUP BY YEAR(`students`.`enrolment_date`);
+
+2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+
+//SOLUTION
+
+SELECT `teachers`.`office_address`, COUNT(`teachers`.`office_address`)
+FROM `teachers`
+GROUP BY `teachers`.`office_address`;
+
+3. Calcolare la media dei voti di ogni appello d'esame
+
+//SOLUTION
+
+SELECT `exam_student`.`exam_id`, AVG(`exam_student`.`vote`)
+FROM `exam_student`
+GROUP BY `exam_student`.`exam_id`
+ORDER BY AVG(`exam_student`.`vote`) DESC;
+
+4. Contare quanti corsi di laurea ci sono per ogni dipartimento
+
+//SOLUTION
+
+SELECT  `departments`.`name`, COUNT(`degrees`.`id`) AS 'CDL'
+FROM `degrees`
+JOIN `departments`
+ON `departments`.`id` = `degrees`.`department_id`
+GROUP BY `departments`.`name`
+ORDER BY COUNT(`degrees`.`id`) DESC;
